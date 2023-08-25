@@ -78,7 +78,7 @@ def sequenceML(fasta_file, test_size,\
                                                                                                             for i in range(len(alpha_predictions))]
     prediction_classifier = [f"pred{i} = sequential_classifier.predict({storing_classifier[i].split()[1]})" 
                                                                             for i in range(len(storing_classifier))]
-    f = open(filname, "wb")
+    f = open(filename, "wb")
     pickle.dump(storing_classifier, f, pickle.HIGHEST_PROTOCOL)
     pickle.dump(storing_model_transformation, f, pickle.HIGHEST_PROTOCOL)
     pickle.dump(alpha_predictions, f, pickle.HIGHEST_PROTOCOL)
