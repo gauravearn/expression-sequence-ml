@@ -4,7 +4,7 @@ import pickle
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.model_selection import train_test_split
 from sklearn.naive_bayes import MultinomialNB
-def sequenceML(fasta_file, test_size,\
+def sequenceML(fasta_file, expression_file, test_size,\
                              random_state,\
                                      filename,\
                                          tokenizer):
@@ -44,7 +44,7 @@ def sequenceML(fasta_file, test_size,\
     sequences = list(sequence_train_dict.values())
     sequence_dataframe = pd.DataFrame([(i,j)for i,j in zip(ids, sequences)]). \
                                           rename(columns = {0: "ids", 1: "sequence"})
-    sequence_dataframe["expression"] = pd.read_csv("/Users/gauravsablok/Desktop/expression.txt")
+    sequence_dataframe["expression"] = pd.read_csv(expression_file)
     sequence_dataframe["class"] = sequence_dataframe["expression"].apply(lambda n: "1" if n == 0.1 else "2" \
                                                             if n == 0.2  else "3" if n == 0.4 else "4" if n == 0.6 \
                                                                                         else "5" if n == 0.8 else "6" if n == 0.3 \
